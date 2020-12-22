@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<!-- xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" -->
+<head>
+<meta charset="UTF-8" />
+<title>MovieChannel</title>
+<link rel="stylesheet" type="text/css" th:href="@{/styles.css}" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body class="bg-dark">
+	<th:block th:include="/_header"></th:block>
+	<th:block th:include="/_menu"></th:block>
+
+	<div class="container shadow rounded pb-4 pt-3" style="background-color: #0c151c;">
+	
+		<div class="row ">
+				<div class="border-right border-info p-3 col-lg-6 text-center">
+					<div class="mt-5">
+						 <a  class=" rounded shadow bg-dark p-2 pl-4 pr-4" style="text-decoration: none;" th:href="@{/auth/google}">
+							 <label for="google" class="h3 mr-5 text-info">
+								<img src="/lib/img/google.png" width="33" style="border-radius:5px"/>
+							</label>
+							<label class="text-info">Sign in with Google</label>
+						 </a>
+					</div>
+					<br />
+					<div >
+						 <a  class=" rounded shadow bg-dark p-2 pl-2 pr-2" style="text-decoration: none;" href="#">
+						 	<label for="facebook" class="h3 mr-5 ">
+						 		<img src="/lib/img/facebook.png" width="51" class="pl-2" style="border-radius:5px"/>
+						 	</label>
+						 	<label class="text-info">Sign in with Facebook</label>
+						</a>
+					</div>
+					 <div class="pt-4">
+						<p th:class ="text-light"> Create New Account ? <a class="ml-4 mr-4 font-italic badge text-warning" href="/user/register"> Register </a> </p>
+					</div>
+					<div class="text-center  m-3 ">
+  	 						<p class="text-danger">By clicking register you agree our <a th:href="@{/terms}">User Agreement</a>.</p>
+  					</div>
+			    </div>
+			    
+			    <div class=" p-3 col-lg-6">
+	 		<!-- /login?error=true -->
+         		<th:block th:if="${#session != null && #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}">
+		             <div th:if= "${#request.getParameter('error') == 'true'}"
+		                style="color: red; margin: 10px 0px;">
+		                Login Failed!!!<br /> Reason :
+		                <span th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}"></span>
+		             </div>
+        		 </th:block>
+	 			<form action="#" th:action="@{/j_spring_security_check}" method="POST">
+		      		<div class=" text-center text-light">
+		      			
+		      			  <div >
+		      		  		<h4>Login</h4>
+		      				<div class="form-group input-group pt-3  ">
+			      				<div class="input-group-prepend ">
+									<span class="input-group-text menu-bar text-light border-0">
+										<i class="fa fa-user"></i>
+									</span>
+								</div>
+			      				<input name="userName" class="width20em font-italic form-control border-0 menu-bar text-light" type="text" placeholder=" user name..."/>
+		      				</div>
+		      		
+			      			<div class="form-group input-group  pt-3">
+			      				<div class="input-group-prepend">
+									<span class="input-group-text menu-bar text-light border-0">
+										<i class="fa fa-lock"></i>
+									</span>
+								</div>
+			      				<input name="encrytedPassword" class="width20em form-control font-italic border-0 menu-bar text-light" type="password" placeholder=" password..."/>
+			      			</div>
+			      			<div class="text-center   pt-3">
+			                  	<input type="submit" class="font-weight-bold border-0  form-control menu-bar text-warning " value="Login" />
+		                  </div>
+		                 
+		      		   </div>
+		      		   <span class="error-message" th:utext="${error}"></span>
+		      		</div>
+      			</form>
+			    </div>
+		</div>
+		
+	</div>
+
+</body>
+</html>

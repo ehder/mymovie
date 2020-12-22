@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	
+	<!-- xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" -->
+<head>
+<meta charset="UTF-8"/>
+<title>MovieChannel</title>
+<link rel="stylesheet" type="text/css" th:href="@{/styles.css}"/>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body class="bg-dark"> 
+	<th:block th:include="/_header"></th:block>
+	<th:block th:include="/_menu"></th:block>
+   	<div class="container shadow p-3 mb-2 rounded" style=" background-color:#0c151c;">
+   		<div class="row details-movie-containe-image text-light p-2 text-center p-3">
+   		
+   		
+   		
+   			<div class="col-lg-6 ">
+	   			 <div>
+	   			 	<img class="image-border" th:src="@{|/movieImage?code=${movie.code}|}"  width="400" height = "450"/>
+	   			 </div>
+<!-- 	   			 <th:block sec:authorize="hasAnyRole('ROLE_ADMIN')">
+	   			 <div class=" row pt-2 ">
+	   			 	 <div class="col-lg-6 text-right">
+		   			 	<a href="#" th:href="@{/admin/movie/edit(code=${update.code})}" class="btn btn-dark text-danger "
+							data-toggle="tooltip" title="edit"> <span class="fa fa-edit"></span>
+						</a>
+	   			 	</div>
+	   			 	 <div class="col-lg-1">
+		   			 	<a href="#" th:href="@{/admin/movie/delete(code=${movie.code})}" class="btn btn-dark text-danger"
+							data-toggle="tooltip" title="delete"> <span class="fa fa-trash"></span>
+						</a>
+	   			 	</div>
+	   			 </div>
+	   			 </th:block> -->
+   			</div>
+   			
+   			<div class="col-lg-6  text-left">
+   					<h5 th:text="${movie.title}" class="text-center mb-5 mt-3 font-weight-bold h1">Sonic the Hedgehog</h5>
+   					<div class="ml-5">
+   						<!-- <label for="year" class="h3 mr-3">Date</label> -->
+   						<output id="year" th:text="${#dates.format(movie.year, 'yyyy')}" class="h3"></output>
+   					</div>
+   					<div class="ml-5"  >
+   						 <!-- <label for="gene" class="h3 mr-3">Generes</label>  -->
+   						<output th:each="g : ${movie.generes}" th:text="${g.name}" th:value="${g.code}" class="h4"></output>
+   					</div>
+   					<div class="ml-5"  >
+   						<label for="runtime" class="h3 mr-5"><i style="font-size:40px;" class="fa fa-clock-o text-success" aria-hidden="true"></i></label> 
+   						<output th:text="${movie.runtime}" class="h4"></output><label>Mins</<label>
+   					</div>
+   					<div class="ml-5"  >
+   						<label for="audience" class="h3 mr-5"><img src="lib/img/imdb.jpg" width="28" style="border-radius:5px"/></label>
+   						<output th:text="${movie.imdbRating}" class="h4"></output>
+   					</div>
+   					<div class="ml-5 "  >
+   						<label for="critics" class="h3 mr-5"><img src="lib/img/critics.png" width="35" style="border-radius:5px"/></label>
+   						<output th:text="${movie.rottenTomatoes}" class="h4 "></output><label style="font-size:20px">% Critics</label>
+   					</div>
+   					<div class="ml-5 pl-1"  >
+   						<label for="audience" class="h3 mr-5"><img src="lib/img/audience.png" width="28" style="border-radius:5px"/></label>
+   						<output th:text="${movie.rottenAudience}" class="h4 ml-1"></output><label style="font-size:20px">% Audience</label>
+   					</div>
+	
+   			</div>
+   			
+   			
+   			
+   		</div>
+   		<div th:if="${movie.movieTrailer.length()}">
+   			<h5 class="text-light border-bottom border-dark pb-2" >Trailer</h5>
+   			<div  class="container ml-2 pl-5 border-bottom border-dark">
+   				<iframe width="1000" height="304" th:src="${'https://www.youtube.com/embed/'+ movie.movieTrailer}" alt="no video attached"
+   				frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+   			</div>
+   		</div>
+   		
+   		
+   		 <div class="row">
+   		 
+   		 	<div id="syno" class="col-lg-8  p-3  width71_2em">
+   				<h5 class="text-light border-bottom border-dark pb-2" >Synopsis</h5>
+   			 	<pre class="text-light" th:text="${movie.description}"></pre>
+   			</div>
+   		
+	   		<div data-spy="scroll" data-offset="15" class="text-light p-3 container width71_2em border-left border-dark col-lg-4">
+	   			 <div class="border-bottom border-warning">
+	   			 	<h5 class="border-bottom border-dark pb-2 text-center">Director</h5>
+	   			 	<div   th:each="d : ${movie.director}">
+	   			 		<label class=" rounded mb-2 p-2  text-white" th:text="${d.name}"></label>
+	   			 	</div>
+	   			 </div>
+	   			 <!-- with scroll bar = style="height:500px; overflow:auto"-->
+	   			<div class="mt-4" >
+	   				<h5 class="border-bottom border-dark pb-2 text-center">Cast</h5>
+	   				<div style="height:400px; overflow:auto">
+		   				  <div th:each="s : ${movie.stars}" class="border-bottom border-dark" >
+		   			 		<label th:text="${s.name} " ></label>
+		   				 </div>
+	   				 </div>
+	   			</div>
+	   		</div>
+	   		
+   		 </div>
+   		<div class="mt-4">
+   			<table class="table table-border text-light ">
+   				<thead>
+   					<tr>
+   						<td>Download</td>
+   						<td>Server</td>
+   						<td>Size</td>
+   						<td>Quality</td>
+   					</tr>
+   				</thead>
+   				<tbody>
+   					<tr>
+   						<td>Option</td>
+   						<td>
+	   						 <a th:href="${movie.movieLink}">
+	   							Megaup
+	   						 </a> 
+   						</td>
+   						<td>1.80GB</td>
+   						<td>1080p5.1</td>
+   					</tr>
+   					<!-- <tr>
+   						<td>Option</td>
+   						<td>
+   						   <a th:href="${movie.movieLink}">
+	   							OpenLoad
+	   					   </a> 
+   						</td>
+   						<td>1.80GB</td>
+   						<td>1080p5.1</td>
+   					</tr> -->
+   				</tbody>
+   			</table>
+   		</div>
+	   		
+   	</div>
+   			 
+   			 
+   			 
+   			 <div  class="container text-light pb-4 shadow p-3 mb-5 rounded" style=" background-color:#0c151c;">
+	   			 <h4 class="text-secondary">Comments:</h4>
+	   			 
+	   			 
+	   			 
+	   			 <div>
+	   			 	<div class="p-3"  sec:authorize="!isAuthenticated()">
+	   			 		<a href="/user/login">Login to leave a comment</a> 
+	   			 	</div>
+	   			 	<div sec:authorize="isAuthenticated()" class="mb-3">
+			   			 <form action="#" th:action="@{/movieDetails}"  th:object="${addcomment}" method="post">
+			   			 
+				   			 	<!-- <div class="ml-5">
+				   			 		<label  th:text="${#request.userPrincipal.name}"></label>
+				   			 	</div> -->
+				   			 	
+								<div  class="ml-5" th:if="${#request.userPrincipal.name != null}">
+									<input style="width: 25em;  background-color:#0c151f;" type="text" th:field="*{body}" class="text-light p-1 " placeholder="leave a comment"/>
+									<input  type="hidden" th:field="*{movie}"/>
+									<input  type="hidden" th:field="*{account}"/>
+									
+									
+									<input type="submit" name="post" value="post"/>
+								</div>
+							
+						</form>
+	   				 </div>
+	   			 
+		   	 		<div style="height:400px;width:500px; overflow:auto" >
+		   	 				<div th:each="comment : ${movie.comments}" style=" background-color:#0c151f; ">
+		   	 			<div  class="ml-1 pt-1 pb-1 shadow mb-3 rounded border-top border-bottom border-dark container">
+		   	 				<div class="row">
+			   	 				<div class="ml-3 mr-3"><a th:text="${comment.account.userName}">User</a></div>
+			   	 			
+			   	 				<div class="text-secondary small font-italic pt-1" th:text="${#dates.format(comment.createDate, 'dd-MMM-yyyy')}"></div>
+		   	 				</div>
+		   	 			
+				        	<div><p class=" text-secondary" th:text="${comment.body}">Body</p></div>
+				        
+		   	 			</div>
+			    	</div>
+		   	 		</div>
+			    	
+	   			 </div>
+		    	
+   			 </div>
+	
+        
+	
+    
+	<th:block th:include="/_footer"></th:block>
+	
+	<script type="text/javascript">
+		function opendialog(){
+			window.open("http://localhost:8080/comment?code=m0002","_blank","top=500,left=200,height=400,toolbar=no,resiable=no")
+		}
+	</script>
+
+</body>
+</html>

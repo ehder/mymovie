@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+
+
+  
+<title>MovieChannel</title>
+<link rel="stylesheet" type="text/css" th:href="@{/styles.css}"/>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+
+</head>
+
+
+<body class="bg-dark"> 
+<div class="row bg-dark p-1 pl-5 ml-4 mr-4" 
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+      
+   
+ 
+   <div class=" text-danger col-lg-8">D-Movie</div>
+   
+
+   
+   <div class="text-right ">
+   		
+       <th:block sec:authorize="isAuthenticated()">
+       		<!-- for this th:text="${#request.userPrincipal.name} you need to add 
+       		thymeleaf-extras-springsecurity5 dependency -->
+         <div class="row mb-4">
+         	 <div >
+          		<a class="mr-4 p-2 rounded shadow bg-dark " style="text-decoration: none;" th:href="@{/user/accountInfo}" th:text="${#request.userPrincipal.name}">..</a>
+          </div>
+        
+         <div>
+         		<a class="p-2 rounded shadow bg-dark hover-info" style="text-decoration: none;" th:href="@{/logout}">Logout</a>
+         </div>
+         </div>
+      </th:block>
+       
+      <th:block sec:authorize="!isAuthenticated()">
+	      	 <div class="row mb-4">
+	      	 	<div ><a class="mr-4 p-2 rounded shadow bg-dark " style="text-decoration: none;" th:href="@{/user/register}">register</a></div>
+	         	<div ><a class="p-2 rounded shadow bg-dark hover-info" style="text-decoration: none;" th:href="@{/user/login}">Login</a></div>
+	      	 </div>
+	         <!-- <a th:href="@{/user/role}">Role</a> -->
+      </th:block> 
+      
+      <th:block sec:authorize="hasAnyRole('ROLE_ADMIN')">
+				 	<div >
+				         <a class="font-italic badge text-warning" th:href="@{/admin/movie}">addmovie</a>
+				         
+				          <a class="font-italic badge text-warning" th:href="@{/admin/movieListTable}">list</a>
+				         
+				         <a class=" font-italic badge text-warning" href="/admin/director">adddirector</a>
+				          
+				         <a class=" font-italic badge text-warning" href="/admin/generes">addgeneres</a>
+				           
+				         <a class="font-italic badge text-warning" href="/admin/cast">addstars</a>
+				   </div>
+	  </th:block>
+   </div>
+   
+</div>
+
+		   	<div class="mr-5 pr-5">
+		   <form action="#" th:action="@{/search}"   class="topnav-right pr-4 "> <!-- th:object="${}" th:action="@{}" method ="post" -->
+					<div class="row " >
+						<div class="pr-1 rounded shadow" style="border-bottom: 1px solid black">
+							<input name="keyword" id="keyword" th:value="${keyword}" style="width:320px" 
+							class="bg-dark form-control text-light border-dark" type="search" placeholder="Search.." required="required">
+						</div>
+						<div class="ml-2 rounded" style="border:1px solid black;">
+							<button class="btn btn-dark text-light" type="submit">
+								<span class="fa fa-search text-light"></span>
+							</button> 
+						</div>
+						<!-- <div><input type="button" value="Clear" id="btnClear" onclick="clearSearch()" /></div> -->
+					</div>
+			</form>
+	</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

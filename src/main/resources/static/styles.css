@@ -1,0 +1,156 @@
+ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+.product-preview-container {
+	width: 170px;
+	border:1px solid black;
+	display: inline-block;
+}
+
+caption {
+	display: table-caption;
+	text-align: center;
+}
+
+.details-movie-containe-image {
+	width: 71.2em;
+	height: 500px;
+	display: inline-block;
+}
+
+.input-mov-container {
+	padding-top: 30px;
+	width: 69.4em;
+	height: 950px;
+	display: inline-block;
+}
+
+.register-container {
+	padding: 30px;
+	width: 69.4em;
+	height: 550px;
+	display: inline-block;
+}
+
+.login-container {
+	padding: 30px;
+	width: 69.4em;
+	height: 400px;
+	display: inline-block;
+}
+
+.logo-imdb {
+	background-image: url(/lib/img/imdb.png);
+}
+
+.mr-122 {
+	margin-right: 122px;
+}
+
+.mr-84 {
+	margin-right: 84px;
+}
+
+.mr-90 {
+	margin-right: 90px;
+}
+
+.mr-65 {
+	margin-right: 65px;
+}
+
+.mr-70 {
+	margin-right: 70px;
+}
+
+.mr-41 {
+	margin-right: 41px;
+}
+
+.mr-94 {
+	margin-right: 94px;
+}
+
+.width71_2em {
+	width: 71.2em;
+}
+
+.width20em {
+	width: 20em;
+}
+
+.menu-bar {
+	opacity: 0.9;
+	background: rgb(36, 68, 66);
+	background: linear-gradient(0deg, rgba(36, 68, 66, 1) 13%,
+		rgba(2, 4, 5, 1) 51%, rgba(42, 76, 82, 1) 96%);
+}
+
+.details-bar {
+	opacity: 0.9;
+	background: rgb(50, 103, 101);
+	background: linear-gradient(90deg, rgba(50, 103, 101, 1) 17%,
+		rgba(12, 21, 28, 1) 49%, rgba(56, 114, 126, 1) 76%);
+}
+
+.image-border {
+	border: 5px solid #ccc;
+}
+
+.iframe {
+	height: 300px;
+	width: 300px;
+	resize: both;
+	overflow: auto;
+}
+
+
+.topnav-right {
+  float: right;
+}
+
+/* #myInput {
+  box-sizing: border-box;
+  background-image: url('searchicon.png');
+  background-position: 14px 12px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 14px 20px 12px 45px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+#myInput:focus {
+	outline: 3px solid #ddd;
+	}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  width: 65em;
+  overflow: auto;
+  border: 1px solid #0c151c;
+  z-index: 1;
+  top:47px;
+  right:1px;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  display: block;
+}
+
+.show {display: block;} */
+
+
+

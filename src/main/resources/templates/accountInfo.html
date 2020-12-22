@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8">
+      <title>Account Info</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}"/>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+   </head>
+   <body class="bg-dark">
+    
+      <th:block th:include="_header"></th:block>
+      <th:block th:include="_menu"></th:block>
+      
+      <div  class="container border border-dark shadow rounded text-light" style="background-color: #0c151b; ">
+      
+      		<div class="row mb-1 border-bottom border-danger shadow pb-5 rounded-circle" style="background-color: #0c151f;">
+      		
+      			<div class="col-lg-5 col-m-5 col-sm-5 text-center">
+      				<img class="m-3 rounded-circle shadow border border-dark" src="/lib/img/profile.jpg"  width="200" height = "150"/>
+      			</div>
+      			
+      			<div class="col-lg-7 col-m-6 col-sm-6 ">
+      				<h5 class="text-center mt-2 mb-4">
+      					<span th:utext="${#request.userPrincipal.name}"></span>
+      				</h5>
+      				
+              		 <!-- https://tubitv.com/home-->
+              		 <!-- https://www.vudu.com/content/movies/free-->
+              		 <!-- https://www.popcornflix.com/pages/discover/d/movies -->
+              		 <!-- https://moviesfoundonline.com/ -->
+              		 
+	              	<div>
+	      				<pre class="text-light">
+	 		Understand the whole of life
+	You must understand the whole of life, 
+	not just one part of it. That is why you must read, 
+	that is why you must look at the skies, why you must 
+	sing, dance and write poems, and suffer, and understand, 
+	for all that is life.
+	â€”KRISHNAMURTI     							
+	      				</pre>
+	      			</div>
+      			</div>
+      			
+      			
+      		</div>
+      		
+      		<div>
+	        	
+<!-- 	        <div class="row">
+			       <div class="product-preview-container ml-3 mt-3 list-group" th:each="list : ${showMyList}" >
+			         <ul class="text-center">
+			            <li>
+			            	<a  th:href="@{/movieDetails(code=${list.code})}" >
+			            		<img th:src="@{|/movieImage?code=${list.code}|}"
+			            		style=" background-color:#0c151c; opacity:1.8;"  width="168" height = "250" />
+			            	</a>
+			            	<a th:href="@{/user/accountInfo/remove(movie=${list.code})}"  class="m-1 ">
+			            		<span class="fa fa-trash text-light" title="remove from my list"></span>
+			            	</a>
+			            </li>
+			            <li class="text-center">
+			            	<span  th:text="${list.title}"></span>
+			            </li>
+			         </ul>
+			      </div>
+	        </div> -->
+	        
+	        
+      		</div>
+      		
+      		
+      		
+      </div>
+      
+       
+      <div  class="container shadow rounded border border-dark text-light" style="background-color: #0c151c;">
+         <ul>
+            <li>User Name: <span th:utext="${#request.userPrincipal.name}"></span></li>
+            <li>
+               <ul>
+                  <li th:each="auth : ${userDetails.authorities}" th:utext="${auth.authority}"></li>
+               </ul>
+            </li>
+         </ul>
+      </div> 
+       
+      <th:block th:include="_footer"></th:block>
+       
+   </body>
+</html>

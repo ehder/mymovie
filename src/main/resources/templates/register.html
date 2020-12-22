@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>register</title>
+<link rel="stylesheet" type="text/css" th:href="@{/styles.css}"/>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+
+</head>
+
+
+<body class="bg-dark"> 
+
+	<th:block th:include="/_header"></th:block>
+	
+	<th:block th:include="/_menu"></th:block>
+	
+	<div  class="container">
+		<div style="background-color:#0c151c;" class="text-center"> 
+
+      		<div class="register-container text-center text-light w-75">
+      			
+      		  		<form action="#" th:object="${account}" th:action="@{/user/register}" method="post">
+      		  			<div class="m-2 pl-5 pr-5 mr-5 ml-5 ">
+	      		  		<h4>Register</h4>
+	      				<div class="form-group input-group p-3  ">
+		      				<div class="input-group-prepend ">
+								<span class="input-group-text menu-bar text-light border-0">
+									<i class="fa fa-user"></i>
+								</span>
+							</div>
+							
+		      				<input th:field="*{userName}"  class="width20em font-italic form-control border-0 menu-bar text-light"
+		      				 type="text" placeholder=" user name..."/>
+		      				<div th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="invalid-feedback"></div>
+	      					
+	      				</div>
+	      		
+		      			<div class="form-group input-group  p-3">
+		      				<div class="input-group-prepend">
+								<span class="input-group-text menu-bar text-light border-0">
+									<i class="fa fa-envelope"></i>
+								</span>
+							</div> 
+		      				<input th:field="*{email}"  class="width20em form-control font-italic border-0 menu-bar text-light" type="email" placeholder=" email..."/>
+		      			</div>
+	      			
+		      			<div class="form-group input-group  p-3">
+		      				<div class="input-group-prepend">
+								<span class="input-group-text menu-bar text-light border-0">
+									<i class="fa fa-lock"></i>
+								</span>
+							</div>
+		      				<input th:field="*{encrytedPassword}"  class="width20em form-control font-italic border-0 menu-bar text-light" type="password" placeholder=" password..."/>
+		      			</div>
+	      		
+		      			<!-- <div class="form-group input-group  p-3">
+		      				<div class="input-group-prepend">
+								<span class="input-group-text menu-bar text-light border-0">
+									<i class="fa fa-lock "></i>
+								</span>
+							</div>
+		      				<input th:field="*{encrytedPassword}" class="width20em form-control font-italic border-0 menu-bar text-light" type="password" placeholder=" confirmpassword..."/>
+		      			</div> -->
+		      			
+		      			<!-- <div class="form-group input-group  p-3">
+		      				<div class="input-group-prepend">
+								<span class="input-group-text menu-bar text-light border-0">
+									<i class="fa fa-user"></i>
+								</span>
+							</div>
+							
+		      				<select th:field="*{roles}">
+		      					<option value=""></option>
+		      					<option th:each="r : ${roles}" th:text="${r.name}" th:value="${r.id}" class="width20em form-control font-italic border-0 menu-bar text-dark" />
+		      				</select>
+		      			</div>  -->
+		      			
+		      			<input th:field="*{roles}" type="hidden" />
+		      			<div class="text-center pl-3 pr-3 pt-3 ">
+		                  	<input type="submit" class="font-weight-bold border-0  form-control menu-bar text-warning " value="Register" />
+	                  	</div>
+	                  	<div class="pt-4">
+						  <p  th:class = "text-light"> Have account? <a class="ml-4 mr-4 font-italic badge text-warning" href="/user/login">Login</a> </p>
+					  </div>
+	      		  	 </div>
+      		  		</form>
+      	</div>
+ </div> 
+    </div>
+    
+	<th:block th:include="/_footer"></th:block>
+
+</body>
+</html>

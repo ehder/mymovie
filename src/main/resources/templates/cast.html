@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+<meta charset="UTF-8" />
+<title>MovieChannel</title>
+<link rel="stylesheet" type="text/css" th:href="@{/styles.css}" />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<body class="bg-dark">
+
+	<th:block th:include="/_header"></th:block>
+	<th:block th:include="/_menu"></th:block>
+	<div  class="container" style="background-color: #0c151c;">
+
+		<div>
+			<form th:object="${star}" th:action="@{/admin/cast}" method="post">
+			
+				<div class="text-light p-5">
+				
+					
+						<div class="row p-2">
+						
+								<div class="pb-5 mr-4">
+										<label for="code" >Code</label>
+										<input style="width:20em"  id="code" th:field="*{code}" class=" font-italic "  type="text" placeholder="enter star code..." 
+										th:class="${#fields.hasErrors('code') ? 'form-control is-invalid' : 'form-control'}"/>
+										<div th:if="${#fields.hasErrors('code')}" th:errors="*{code}" class="invalid-feedback "></div>
+								</div>
+								
+								<div class="mr-4">
+									<div>
+										<label for="name" >Name</label> 
+									<input style="width:20em"  id="name" th:field="*{name}" class=" font-italic " type="text" placeholder="enter star name" 
+									th:class="${#fields.hasErrors('name') ? 'form-control is-invalid' : 'form-control'}"/>
+									<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback "></div>
+									</div>
+								</div>
+								
+								<div>
+								    <input style="margin-top:35px" type="submit" class="border-info text-dark" value="Save" />
+								</div>
+						</div>
+						
+					
+					<div  style="height:500px; overflow:auto">
+						<table class="table-bordered text-center text-light">
+							<tr class="menu-bar">
+								<th>Id</th>
+								<th>Code</th>
+								<th>Name</th>
+								<th>Delete</th>
+							</tr>
+							<tr  th:each="s : ${starList}" >
+								<td>
+									<output style="width:100px" th:text="${s.id}" class="width20em font-italic"  ></output>
+								</td>
+								<td>
+									<output style="width:150px" th:text="${s.code}" class="width20em font-italic"  ></output>
+								</td>
+								<td>
+									<output style="width:300px" th:text="${s.name}" class="width20em font-italic"  ></output>
+								</td>
+								<td>
+									<a href="#" th:href="@{/admin/cast/delete/(id=${s.id})}"
+										class="btn" data-toggle="tooltip" title="delete"> <span class="fa fa-trash text-light"></span>
+									</a>
+								</td>
+							</tr>
+					</table>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<th:block th:include="/_footer"></th:block>
+</body>
+</html>

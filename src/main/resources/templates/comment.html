@@ -1,0 +1,38 @@
+<div class=" p-1 mb-2 container" style=" background-color:#0c151c;"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+	
+	<!-- xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="/layouts/movieDetails.html" -->
+	
+	
+	<form action="#" th:action="@{/comment}"  th:object="${addcomment}" method="post">
+		<div class="m-3 mt-4">
+			<h6 class="text-light pl-4">Comment :</h6>
+			<div class="p-2  mt-2" style="background-color: #0c1510">
+				<div class="row ">
+					<div class="badge badge-warning p-2 ml-3 mr-3">
+						<i class="fa fa-user"></i>
+					</div>
+				</div>
+				 <div>
+					<input style="width: 50em" type="text" th:field="*{body}" class="text-dark ml-5" />
+					<input  type="hidden" th:field="*{movie}"/>
+					<input  type="hidden" th:field="*{account}"/>
+					
+					<input type="submit" name="post" value="post"
+					style="font-family:'-apple-system',BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-size:16px;font-weight:normal;line-height:1.5;margin:0;margin-bottom:15px"/>
+				</div>
+				 
+				<div>
+					<label class="text-light ml-5">Could You guys please change
+						the file type from .mkv its impossible to edit with on Sony vegas</label>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+
+
+

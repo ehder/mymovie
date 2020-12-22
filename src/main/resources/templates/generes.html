@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+<meta charset="UTF-8" />
+<title>MovieChannel</title>
+<link rel="stylesheet" type="text/css" th:href="@{/styles.css}" />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<body class="bg-dark">
+
+	<th:block th:include="/_header"></th:block>
+	<th:block th:include="/_menu"></th:block>
+	<div  class="container" style="background-color: #0c151c;">
+
+		<div>
+			<form th:object="${generes}" th:action="@{/admin/generes}" method="post">
+				<div class="input-mov-container text-light">
+					<table class="table-bordered text-center ">
+						<thead>
+							<tr class="menu-bar">
+								<th>Code</th>
+								<th>Name</th>
+								<th>Submit</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<input id="code" th:field="*{code}" class="width20em font-italic" type="text" placeholder="enter generes code..." />
+								</td>
+								<td>
+									<input id="title" th:field="*{name}" class="width20em font-italic" type="text" placeholder="enter generes Name..." />
+								</td>
+								<td>
+									<input type="submit" class="font-weight-bold   text-dark " value="Submit" />
+								</td>
+							</tr>
+						</tbody>
+						
+					</table>
+					<div style="height:500px; overflow:auto">
+						<table class="table-bordered text-center mt-5" >
+							<tr class="menu-bar">
+								<th>Code</th>
+								<th>Name</th>
+								<th>Delete</th>
+							</tr>
+							<tr  th:each="g : ${generesList}" >
+								<td>
+									<output th:text="${g.code}" class="width20em font-italic"  ></output>
+								</td>
+								<td>
+									<output  th:text="${g.name}" class="width20em font-italic"  ></output>
+								</td>
+								<td>
+									<a href="#" th:href="@{/admin/generes/delete/(id=${g.id})}"
+										class="btn" data-toggle="tooltip" title="delete"> <span class="fa fa-trash text-light"></span>
+									</a>
+								</td>
+					
+							</tr>
+					</table>
+					</div>
+					
+				</div>
+			</form>
+		</div>
+	</div>
+	<th:block th:include="/_footer"></th:block>
+</body>
+</html>

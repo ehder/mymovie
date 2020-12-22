@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>MovieChannel</title>
+<link rel="stylesheet" type="text/css" th:href="@{/styles.css}"/>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+
+</head>
+
+
+<body class="bg-dark"> 
+
+    <div class="mr-2"><th:block th:include="/_header"></th:block></div>
+	
+	<th:block th:include="/_menu"></th:block>
+	
+	<div  class="container text-light pb-2" style=" background-color:#0c151c; opacity:1.8;">
+			<div th:if="${listMovies.size() == 0}" class="text-center text-danger">
+				<label>No Movies available with <span th:text="${keyword}"></span></label>			
+			</div>
+			<div class="row">
+			       <div class="product-preview-container ml-3 mt-3 list-group" th:each="list : ${listMovies}" >
+			         <ul>
+			            <li>
+			            	<a  th:href="@{/movieDetails(code=${list.code})}" >
+			            		<img th:src="@{|/movieImage?code=${list.code}|}"
+			            		style=" background-color:#0c151c; opacity:1.8;"  width="168" height = "250" />
+			            	</a>
+			            </li>
+			            <li class="text-center">
+			            	<span  th:text="${list.title}"></span>
+			            </li>
+			         </ul>
+			      </div>
+	        </div>
+
+			<!-- <div class="row  pl-4">
+				<div th:if="${listMovies.size() != 1}" class="form-group pagination-centered m-2">
+					 <ul class="pagination">
+						<li th:class="${list.pageIndex == 0} ? disabled" >
+							<a class="page-link card fa fa-backward" 
+							 th:href="@{/movieList(parapageSize=${list.pageSize}, parapage=1)}"></a>
+						</li>
+						<li th:class="${list.pageIndex == 0} ? disabled">
+							<a class="page-link card fa fa-step-backward" 
+							 th:href="@{/movieList(parapageSize=${list.pageSize}, parapage=${list.pageIndex})}"></a>
+						</li>
+						
+						<li  th:each="pageNo : ${#numbers.sequence(list.startPage, list.endPage)}" 
+							th:class="${list.pageIndex == (pageNo - 1)} ? 'active pointer-disabled'" >
+							<a class="page-link card" style="color:blue;font-size:13.4px;width:40px;text-align:center;font-weight:bold"
+							 th:href="@{/movieList(parapageSize=${list.pageSize}, parapage=${pageNo})}" th:text="${pageNo}"></a>
+						</li>
+						
+						<li th:class="${list.pageIndex + 1 == list.totalPageCount} ? disabled">
+							<a class="page-link card fa fa-step-forward" 
+							 th:href="@{/movieList(parapageSize=${list.pageSize}, parapage=${list.pageIndex + 2})}"></a>
+						</li>
+						<li th:class="${list.pageIndex + 1 == list.totalPageCount} ? disabled">
+							<a class="page-link card fa fa-forward" 
+							 th:href="@{/movieList(parapageSize=${list.pageSize}, parapage=${list.totalPageCount})}"></a>
+						</li>
+					</ul>
+				</div>
+			</div> -->
+	</div>
+    
+	<th:block th:include="/_footer"></th:block>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+<meta charset="UTF-8" />
+<title>MovieChannel</title>
+<link rel="stylesheet" type="text/css" th:href="@{/styles.css}" />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<body class="bg-dark">
+
+	<th:block th:include="/_header"></th:block>
+	<th:block th:include="/_menu"></th:block>
+	<div  class="container" style="background-color: #0c151c;">
+
+		<div>
+			<form th:object="${updateMovie}" th:action="@{/admin/editMovie}"  enctype="multipart/form-data" method="post">
+				<div class="input-mov-container text-light">
+					<div class="border-bottom border-info pb-5">
+						<table class=" table-bordered text-center ">
+							<thead>
+								<tr class="menu-bar">
+									<th>Code</th>
+									<th>Title</th>
+									<th>Year</th>
+									<th>RunTime</th>
+									<th>Image</th>
+									<th>IMDb</th>
+									<th>RottenTomatoes</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<input style="width:120px" th:field="*{code}"  type="text" placeholder="movie code..." />
+									</td>
+									<td>
+										<span class="error-message" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">..</span>
+										<input style="width:250px" id="title" th:field="*{title}"  type="text" placeholder="enter movie title..." />
+									</td>
+									<td>
+										<input style="width:150px" id="year" th:field="*{year}" aria-describedby="helpId"  type="date" placeholder="enter movie year..." />
+									</td>
+									<td>
+										 <input style="width:90px" id="run" th:field="*{runtime}"  type="text" placeholder="enter movie run time..." />
+									</td>
+									<td>
+										<input style="width:210px" type="file" th:field="*{fileData}"/>
+									</td>
+									<td>
+										<input style="width:80px" id="imdb" th:field="*{imdbRating}" type="text" placeholder="enter movie imdbRating..." />
+									</td>
+									<td>
+										<input style="width:80px" id="rotten" th:field="*{rottenTomatoes}" type="text" placeholder="enter movie rottenTomatoes..." />
+									</td>
+							</tbody>
+						</table>
+						<div class="row mt-5 mb-3">
+						
+							<div class=" col-lg-8" style="background:none transparent;">
+								<div>
+									<label>Description : </label>
+								</div>
+								<textarea id=":rl" class="editable border" hidefocus="true" type="text"
+									aria-label="Message Body" g_editable="true" th:field="*{description}"
+									role="textbox" aria-multiline="true" contenteditable="true" 
+									tabindex="1" style="direction: ltr; min-height: 600px; min-width: 590px; background:white;" spellcheck="false"><br>
+								</textarea>
+							</div>
+							
+							<div class=" col-lg-4">
+							
+								<div>
+									<div>
+										<label class="ml-3">Please select the movie stars name </label>
+									</div>
+									<select   id="stars" class="form-control ml-3" name="stars" multiple="multiple" size="8">
+										<option th:each="s : ${stars}" th:value="${s.id}" th:text="${s.name}"></option>
+									</select> 
+								</div>
+								<div>
+									<div>
+										<label class="ml-3">Please select the movie director name </label>
+									</div>
+									<select   id="directors" class="form-control  ml-3" name="directors" multiple="multiple" size="5">
+										<option th:each="d : ${director}" th:value="${d.id}" th:text="${d.name}"></option>
+									</select>
+								</div>
+								<div>
+									<div>
+										<label class="ml-3">Please select the movie generes </label>
+									</div>
+									<select  th:field="*{generes}" id="generes" class="form-control  ml-3" size="5" name="generes" multiple="multiple">
+											<option th:each="g : ${generes}" th:value="${g.id}" th:text="${g.name}"></option>
+									</select>
+								</div>
+								
+								<div class="text-center mt-5" >
+											 <input type="submit" class="font-weight-bold    p-2 " value="Save" />
+										</div>
+								
+							</div>
+							
+						</div>
+						
+					</div>
+					
+				</div>
+				
+				<div style="height:500px; overflow:auto">
+					<table class="table-bordered text-center text-light">
+							<tr class="menu-bar">
+								<th>Code</th>
+								<th>Title</th>
+								<th>Year</th>
+								<th>RunTime</th>
+								<th>IMDb</th>
+								<th>RottenTomatoes</th>
+							    <th>Generes</th>
+								<th>Director</th>
+								<th>Stars</th>
+								<th>Delete</th>
+							</tr>
+							<tr  th:each="m : ${movieList}" >
+								<td>
+									<output style="width:120px;  word-break: break-all;" th:text="${m.code}" class="font-italic"  ></output>
+								</td>
+								<td>
+									<output  style="width:120px  word-break: break-all;" th:text="${m.title}" class="width20em font-italic"  ></output>
+								</td>
+								<td>
+									<output style="width:120px" id="year" th:text="${#dates.format(m.year, 'dd/MM/yyyy')}" ></output>
+								</td>
+								<td>
+									<output  style="width:50px" th:text="${m.runtime}" class=" font-italic"  ></output>
+								</td>
+								<td>
+									<output style="width:50px" th:text="${m.imdbRating}" class=" font-italic"  ></output>
+								</td>
+								<td>
+									<output  style="width:50px" th:text="${m.rottenTomatoes}" class=" font-italic"  ></output>
+								</td>
+								 <td>
+									<output style="width:50px" th:each="g : ${m.generes}"  th:text="${g.name}" class="width20em font-italic"  ></output>
+								</td>
+								<td>
+									<output style="width:50px" th:each="d : ${m.director}" th:text="${d.name}" class="width20em font-italic"  ></output>
+								</td>
+								<td>
+									<output  style="width:50px" th:each="s : ${m.stars}" th:text="${s.name}" class="width20em font-italic"  ></output>
+								</td>
+								<td>
+									<a href="#" th:href="@{/admin/movie/delete/(id=${m.id})}"
+										class="btn" data-toggle="tooltip" title="delete"> <span class="fa fa-trash text-light"></span>
+									</a>
+								</td>
+								
+							</tr>
+					</table>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+<meta charset="UTF-8" />
+<title>MovieChannel</title>
+<link rel="stylesheet" type="text/css" th:href="@{/styles.css}" />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<body class="bg-dark">
+
+	<th:block th:include="/_header"></th:block>
+	<th:block th:include="/_menu"></th:block>
+	<div class="container" style="background-color: #0c151c;">
+
+		<div>
+			<form th:object="${director}" th:action="@{/admin/director}"
+				method="post">
+				<div class="row text-light pt-5">
+					<div class="col-lg-8">
+						<div>
+							<table class="table-bordered text-center ">
+								<thead>
+									<tr class="menu-bar">
+										<th>Code</th>
+										<th>Name</th>
+										<th>Submit</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input id="code" th:field="*{code}" class="width20em font-italic" type="text" placeholder="enter director code..." />
+										</td>
+										<td>
+										    <input id="title" th:field="*{name}" class="width20em font-italic" type="text" placeholder="enter director Name..." />
+										</td>
+										<td>
+											<input type="submit" class="font-weight-bold   text-dark " value="Submit" />
+										</td>
+									</tr>
+								</tbody>
+
+							</table>
+						</div>
+
+<!-- 						<div class="mt-3 ml-4">
+							<textarea id=":rl" class="editable border" hidefocus="true"
+								type="text" aria-label="Message Body" g_editable="true"
+								th:field="*{about}" role="textbox" aria-multiline="true"
+								contenteditable="true" tabindex="1"
+								style="direction: ltr; min-height: 400px; min-width: 650px; background: white;"
+								spellcheck="false"><br>
+							</textarea>
+						</div> -->
+					</div>
+
+					<div class="col-lg-4" style="height:500px; overflow:auto">
+						<table class="table-bordered text-center">
+							<tr class="menu-bar">
+								<th>Id</th>
+								<th>Code</th>
+								<th>Name</th>
+								<th>Delete</th>
+							</tr>
+							<tr th:each="d : ${directorList}">
+								<td><output style="width: 50px" th:text="${d.id}"
+										class="width20em font-italic"></output></td>
+								<td><output style="width: 100px" th:text="${d.code}"
+										class="width20em font-italic"></output></td>
+								<td><output style="width: 150px" th:text="${d.name}"
+										class="width20em font-italic"></output></td>
+										<td>
+									<a href="#" th:href="@{/admin/director/delete/(id=${d.id})}"
+										class="btn" data-toggle="tooltip" title="delete"> <span class="fa fa-trash text-light"></span>
+									</a>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+				</div>
+			</form>
+		</div>
+	</div>
+	<th:block th:include="/_footer"></th:block>
+</body>
+</html>

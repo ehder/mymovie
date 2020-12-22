@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>MovieChannel</title>
+<link rel="stylesheet" type="text/css" th:href="@{/styles.css}"/>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+
+</head>
+
+
+<body class="bg-dark"> 
+
+	<th:block th:include="/_header"></th:block>
+	
+	<th:block th:include="/_menu"></th:block>
+	
+	<div  class="container text-light pb-2" style=" background-color:#0c151c; opacity:1.8;">
+			<div class="row">
+			       <div class="product-preview-container ml-3 mt-3 list-group" th:each="list : ${list.itemList}" >
+			         <ul>
+			            <li>
+			            	<a  th:href="@{/movieDetails(code=${list.code})}" >
+			            		<img th:src="@{|/movieImage?code=${list.code}|}"
+			            		style=" background-color:#0c151c; opacity:1.8;"  width="168" height = "250" />
+			            	</a>
+			            </li>
+			            <li class="text-center">
+			            	<span  th:text="${list.title}"></span>
+			            </li>
+			         <!--   <li>
+			            <th:block sec:authorize="hasAnyRole('ROLE_ADMIN')">
+			           	 <div class="row ml-5">
+			           	 	<div class="col-lg-1 m-2">
+			   			 	<a href="#" th:href="@{/admin/movie(code=${list.code})}" class="btn btn-dark text-danger"
+								data-toggle="tooltip" title="edit"> <span class="fa fa-edit"></span>
+							</a>
+	   			 		</div>
+	   			 		<div class="col-lg-1 m-2">
+			   			 	<a href="#" th:href="@{/admin/movie/delete(code=${list.code})}" class="btn btn-dark text-danger"
+								data-toggle="tooltip" title="trash"> <span class="fa fa-trash"></span>
+							</a>
+	   			 		</div>
+			           	 </div>
+			           	 </th:block>
+			           	</li> -->
+			         </ul>
+			      </div>
+	        </div>
+
+			<div class="row">
+				<div class="row  pl-4 col-lg-11">
+					<div th:if="${list.totalPageCount != 1}" class="form-group pagination-centered m-2">
+						 <ul class="pagination">
+						 
+							<li th:if="${list.pageIndex > 0}" >
+								<a class="page-link card  border  fa fa-backward" style="background-color:#0c151c"
+								 th:href="@{/(parapageSize=${list.pageSize}, parapage=1)}"></a>
+							</li>
+							<li th:if="${list.pageIndex > 0}">
+								<a class="page-link card  border  fa fa-step-backward"  style="background-color:#0c151c"
+								 th:href="@{/(parapageSize=${list.pageSize}, parapage=${list.pageIndex})}"></a>
+							</li>
+							
+							<li  th:each="pageNo : ${#numbers.sequence(list.startPage, list.endPage)}"
+								th:class="${list.pageIndex == (pageNo - 1)} ? 'page-item active'" >
+								<a class="page-link card" style="background-color:#0c151c;color:blue;font-size:13.4px;width:40px;text-align:center;font-weight:bold"
+								 th:href="@{/(parapageSize=${list.pageSize}, parapage=${pageNo})}" th:text="${pageNo}"></a>
+							</li>
+							<!-- if you put background-color you won't get page active -->
+							
+							<li th:if="${list.pageIndex + 1 < list.totalPageCount}">
+								<a class="page-link card fa fa-step-forward border "  style="background-color:#0c151c"
+								 th:href="@{/(parapageSize=${list.pageSize}, parapage=${list.pageIndex + 2})}"></a>
+							</li>
+							
+							<li th:if="${list.pageIndex + 1 < list.totalPageCount}">
+								<a class="page-link card border  fa fa-forward" style="background-color:#0c151c"
+								 th:href="@{/(parapageSize=${list.pageSize}, parapage=${list.totalPageCount})}"></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+	</div>
+    
+	<th:block th:include="/_footer"></th:block>
+
+</body>
+</html>

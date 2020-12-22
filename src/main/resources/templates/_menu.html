@@ -1,0 +1,90 @@
+<div class="menu-bar p-1 mb-2 container mt-5 shadow rounded"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+
+
+	<!--  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
+
+	<div class="mt-2 mb-2 ">
+
+		<a class=" r-4 p-2  font-weight-bold text-info "
+			style="text-decoration: none;" th:href="@{/}">D-Movie</a>
+
+		<!-- <a class="ml-4 mr-4 font-italic badge text-warning" th:href="@{/}">Home</a> -->
+
+		<!-- <a class="ml-4 mr-4 font-italic badge text-warning" href="#">Movies</a> -->
+
+		<!-- <a class="ml-4 mr-4 font-italic badge text-warning" href="#">Series</a> -->
+
+		<!--  <a class="ml-4 mr-4 font-italic badge text-warning" href="#">Top Rated Movies</a> -->
+
+		<!--  <a class="ml-4 mr-4 font-italic badge text-warning" href="#">Comming Soon</a> -->
+
+		<!-- <a class="ml-4 mr-4 font-italic badge text-warning" href="#">Help</a> -->
+
+
+<!-- 		<div class="topnav-right ml-4  mr-5 font-italic text-warning dropdown">
+			<a onclick="myFunction()" class="dropbtn"> <i class="fa fa-bars" style="font-size:23px;"
+				aria-hidden="true"></i>
+			</a> 
+		<div id="myDropdown" class="dropdown-content">
+			<input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()"> 
+				<div class="row ml-4 p-3">
+					<div class="ml-5">
+						<h4>About</h4> 
+						<a href="#about">About</a> 
+						<a href="#base">Base</a> <a href="#blog">Blog</a> 
+						<a href="#contact">Contact</a>
+						<a href="#custom">Custom</a> 
+						<a href="#support">Support</a> 
+						<a href="#tools">Tools</a>
+					</div>
+					<div class="ml-5">
+						<h4>About</h4>
+						<a href="#about">About</a> 
+						<a href="#base">Base</a> <a href="#blog">Blog</a> 
+						<a href="#contact">Contact</a>
+						<a href="#custom">Custom</a> 
+						<a href="#support">Support</a> 
+						<a href="#tools">Tools</a>
+					</div>
+				</div>
+		</div>
+	</div> -->
+	
+	
+</div>
+<!-- <script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function filterFunction() {
+  var input, filter, ul, li, a, i;
+  
+  input = document.getElementById("myInput");
+  
+  filter = input.value.toUpperCase();
+  
+  div = document.getElementById("myDropdown");
+  
+  a = div.getElementsByTagName("a");
+  
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+</script> -->
+</div>

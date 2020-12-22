@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+<meta charset="UTF-8" />
+<title>MovieChannel</title>
+<link rel="stylesheet" type="text/css" th:href="@{/styles.css}" />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<body class="bg-dark">
+
+	<th:block th:include="/_header"></th:block>
+	<th:block th:include="/_menu"></th:block>
+	<div  class="container" style="background-color: #0c151c;">
+
+		<div>
+			<form th:object="${moviesForm}" th:action="@{/admin/movie}"  enctype="multipart/form-data" method="post">
+				
+				<div class=" text-light ">
+					<div class="row ml-2">
+							<div class="p-3 mr-4">
+								
+									<label for="code" >Code</label>
+									
+									
+										<input th:if="${moviesForm.newMovie}" id="code" th:field="*{code}" class=" font-italic "  type="text" placeholder="enter movie code..." 
+										th:class="${#fields.hasErrors('code') ? 'form-control is-invalid' : 'form-control'}"/>
+										
+										<th:block th:if="${!moviesForm.newMovie}">
+											<span style="width:200px" class="form-control" th:text="${moviesForm.code}"></span>
+											<input th:field="*{code}" type="hidden"/>
+										</th:block>
+										
+										<!-- <input id="code" th:field="*{code}" class=" font-italic "  type="text" placeholder="enter movie code..." 
+										th:class="${#fields.hasErrors('code') ? 'form-control is-invalid' : 'form-control'}"/> -->
+									
+									<div th:if="${#fields.hasErrors('code')}" th:errors="*{code}" class="invalid-feedback"></div>
+							</div>
+							
+							<div class=" p-3 mr-4">
+								<label for="title" >Title</label> 
+								<input id="title" th:field="*{title}" class=" font-italic " type="text" placeholder="enter movie title..." 
+								th:class="${#fields.hasErrors('title') ? 'form-control is-invalid' : 'form-control'}"/>
+								<div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="invalid-feedback"></div>
+							</div>
+
+							<div class="p-3 mr-4">
+								<label for="year" >Release Year</label>
+								<input id="year" th:field="*{year}" aria-describedby="helpId" class=" font-italic " type="date" placeholder="enter movie year..." 
+								th:class="${#fields.hasErrors('year') ? 'form-control is-invalid' : 'form-control'}"/>
+								<div th:if="${#fields.hasErrors('year')}" th:errors="*{year}" class="invalid-feedback"></div>
+							</div>
+
+							<div class="  p-3 mr-4">
+								<label for="run" >Run time</label>
+								 <input id="run" th:field="*{runtime}" class=" font-italic " type="text" placeholder="enter movie run time..." 
+								 th:class="${#fields.hasErrors('runtime') ? 'form-control is-invalid' : 'form-control'}"/>
+									<div th:if="${#fields.hasErrors('runtime')}" th:errors="*{runtime}" class="invalid-feedback"></div>
+							</div>
+
+							<div class="  p-3 mr-4">
+								<label for="imdb" >imdbRating</label>
+								 <input id="imdb" th:field="*{imdbRating}" class="width20em font-italic" type="text" placeholder="enter movie imdbRating..." 
+									th:class="${#fields.hasErrors('imdbRating') ? 'form-control is-invalid' : 'form-control'}"/>
+									<div th:if="${#fields.hasErrors('imdbRating')}" th:errors="*{imdbRating}" class="invalid-feedback"></div>
+							</div>
+							<div class="p-3 mr-4">
+								<label for="rotten" class=" font-italic">Critics</label>
+								<input id="rotten" th:field="*{rottenTomatoes}" class="width20em font-italic " type="text" placeholder="enter movie rottenTomatoes..." 
+								th:class="${#fields.hasErrors('rottenTomatoes') ? 'form-control is-invalid' : 'form-control'}"/>
+								<div th:if="${#fields.hasErrors('rottenTomatoes')}" th:errors="*{rottenTomatoes}" class="invalid-feedback"></div>
+							</div>
+							<div class="p-3 mr-4">
+								<label for="audience" class=" font-italic">Audience</label>
+								<input id="audience" th:field="*{rottenAudience}" class="width20em font-italic " type="text" placeholder="enter movie rottenTomatoes..." 
+								th:class="${#fields.hasErrors('rottenAudience') ? 'form-control is-invalid' : 'form-control'}"/>
+								<div th:if="${#fields.hasErrors('rottenAudience')}" th:errors="*{rottenAudience}" class="invalid-feedback"></div>
+							</div>
+							 <div class="p-3 mr-4">
+								<label for="image" class=" font-italic">image</label>
+								<input style="width:195px" type="file" th:field="*{fileData}" class="width20em font-italic form-control "/>
+							</div> 
+							<div class="p-3 mr-4">
+								<label for="link" >Movie link</label>
+								<input id="rotten" th:field="*{movieLink}" class="width20em font-italic" type="text" placeholder="enter movie link" 
+								th:class="${#fields.hasErrors('movieLink') ? 'form-control is-invalid' : 'form-control'}"/>
+								<div th:if="${#fields.hasErrors('movieLink')}" th:errors="*{movieLink}" class="invalid-feedback"></div>
+							</div>
+							<div class="p-3 mr-4">
+								<label for="link" >Movie Trailer</label>
+								<input id="rotten" th:field="*{movieTrailer}" class="width20em font-italic" type="text" placeholder="enter movie link" 
+								th:class="${#fields.hasErrors('movieTrailer') ? 'form-control is-invalid' : 'form-control'}"/>
+								<div th:if="${#fields.hasErrors('movieTrailer')}" th:errors="*{movieTrailer}" class="invalid-feedback"></div>
+							</div>
+							
+							
+
+									<div class="mr-3 p-3 " style="width:15em">
+										<label for="generes" class=" font-italic ">generes</label> 
+										<!--th:field="*{generes}" -> when you call for upadate the select box will alreay select. mean you don'nt need to reselect it -->
+										<select id="generes" th:field="*{generes}" style="background-color: #0c151c; opacity:0.6" class="form-control border-secondary text-light  " name="generes" multiple="multiple" size="4">
+											<option th:each="g : ${generes}" th:value="${g.id}" th:text="${g.name}"></option>
+										</select>
+									</div>
+									
+									<div class=" p-3 " style="width:19em;">
+										<label for="directors" class=" mr-5 font-italic">Directors</label>
+										<select id="directors" th:field="*{directors}" style="background-color: #0c151c; opacity:0.6" class="form-control border-secondary text-light col-lg-10 ml-3" name="directors" multiple="multiple" size="4">
+											<option th:each="d : ${director}" th:value="${d.id}" th:text="${d.name}"></option>
+										</select>
+									</div>
+					</div>
+					
+						<div class="row ml-4">
+								<div class=" m-3 mt-3 mb-3">
+									<div>
+										<label>Description : </label>
+									</div>
+									<textarea id=":rl" class="editable border" hidefocus="true" type="text"
+										aria-label="Message Body" g_editable="true" th:field="*{description}"
+										role="textbox" aria-multiline="true" contenteditable="true" 
+										tabindex="1" style="direction: ltr; min-height: 600px; min-width: 650px; background:white;" spellcheck="false"><br>
+									</textarea>
+								</div>
+							
+							
+								<div class="ml-5 col-lg-4">
+									
+							
+									<div class="row p-3">
+										 <label for="star"  class="col-lg-1 font-italic mr-5">Cast</label>
+										 <!-- when you select you have to use it name like : name = "stars" or you will get null error -->
+										 <select id="star" th:field="*{stars}" style="background-color: #0c151c; opacity:0.6" class="form-control border-secondary text-light col-lg-10 ml-3" name="stars" multiple="multiple" size="23">
+											<option th:each="s : ${stars}" th:value="${s.id}" th:text="${s.name}"></option>
+										</select> 
+									</div>
+									<div class="text-center ">
+										<input type="submit" class="font-weight-bold border-info menu-bar text-light p-2 " value="Submit" />
+									</div>
+								</div>
+								
+							
+								
+						</div>
+
+						
+
+					
+				</div>
+				
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+
+
+  
+<title>MovieChannel</title>
+<link rel="stylesheet" type="text/css" th:href="@{/styles.css}"/>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+
+</head>
+
+
+<body class="bg-dark"> 
+
+	<th:block th:include="/_header"></th:block>
+	
+	<th:block th:include="/_menu"></th:block>
+	
+	
+	
+	<div  class="container">
+		<h1>Hello Date</h1>
+		<p th:text="${#dates.format(dates, 'yyyy')}"></p>
+    </div>
+    
+	<th:block th:include="/_footer"></th:block>
+
+</body>
+</html>

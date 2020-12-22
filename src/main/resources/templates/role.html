@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>MovieChannel</title>
+<link rel="stylesheet" type="text/css" th:href="@{/styles.css}"/>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+
+</head>
+
+
+<body class="bg-dark"> 
+
+	<th:block th:include="/_header"></th:block>
+	
+	<th:block th:include="/_menu"></th:block>
+	
+	<div  class="container">
+		<div style="background-color:#0c151c;" class="text-center">
+
+	 <div>
+	 		<form action="#" th:object="${role}" th:action="@{/user/role}"  method="post">
+      		<div class="login-container text-center text-light w-75">
+      			
+      			  <div class="m-2 pl-5 pr-5 mr-5 ml-5 ">
+      		  		<h4>User Role</h4>
+      				<div class="form-group input-group p-3  ">
+	      				<div class="input-group-prepend ">
+							<span class="input-group-text menu-bar text-light border-0">
+								<i class="fa fa-user"></i>
+							</span>
+						</div>
+	      				<input th:field="*{name}" class="width20em font-italic form-control border-0 menu-bar text-light" type="text" placeholder=" role name..."/>
+      				</div>
+	      			<div class="text-center pl-3 pr-3 pt-3">
+	                  	<input type="submit" class="font-weight-bold border-0  form-control menu-bar text-warning " value="Submit" />
+                  </div>
+      		   </div>
+      	</div>
+      	</form>
+     </div>
+</div>
+    </div>
+    
+	<th:block th:include="/_footer"></th:block>
+
+</body>
+</html>
