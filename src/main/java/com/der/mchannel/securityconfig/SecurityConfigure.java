@@ -22,8 +22,9 @@ import com.der.mchannel.moviesServiceImpl.UserAccountServiceImpl;
 @EnableWebSecurity
 public class SecurityConfigure extends WebSecurityConfigurerAdapter{
 
-	@Autowired
-	private DataSource dataSource;
+	/*
+	 * @Autowired private DataSource dataSource;
+	 */
 
 	@Autowired
 	private UserAccountServiceImpl uDetailsServiceImpl;
@@ -52,7 +53,6 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter{
 		// And Setting PassswordEncoder
 		auth.userDetailsService(uDetailsServiceImpl).passwordEncoder(passwordEncoder());
 
-		System.out.println(uDetailsServiceImpl + "!@#$%^&*(#######################)");
 	}
 
 	/*
